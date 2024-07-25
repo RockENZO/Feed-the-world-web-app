@@ -1,0 +1,78 @@
+/* MAIN CONTENTS */
+
+.main-content {
+    transition: margin-left 0.5s; /* Smooth transition for the margin */
+    padding: 0;
+    margin: 0;
+    overflow: auto;
+    width: 100vw;  /* 100% of the viewport width */
+    height: 100vh;
+    border: none;
+    box-sizing: border-box;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-color: #114232;
+}
+
+.box{
+    background-color: #F7F6bb;
+    height: 600px;
+    width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    border-radius: 25px;
+}
+
+
+/* TEXT */
+h1{
+    text-align: center;
+    color: #114232;
+    font-family: "Poppins", sans-serif;
+    font-size: 3em;
+    margin: 0%;
+}
+
+h2{
+    text-align: left;
+    color: #114232;
+    font-family: "Poppins", sans-serif;
+}
+
+p{
+    text-align: left;
+    color: #114232;
+    font-family: "Poppins", sans-serif;
+}
+
+/* BRANCHES */
+
+.branch{
+    display: flex;
+    align-items: center;
+}
+
+.branch-name {
+    text-align: left;
+    color: #114232;
+    font-family: "Poppins", sans-serif;
+    margin-right: 20px;
+    font-size: 2em;
+    font-weight: bold;
+}
+
+.branch button{
+    border: none;
+    border-radius: 12px;
+    height: 40px;
+    width: 150px;
+    font-size: 12px;
+    font-family: "Poppins", sans-serif;
+    background-color: #87A922;
+    margin-right: 10px;
+
+}
+

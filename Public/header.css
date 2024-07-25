@@ -1,0 +1,156 @@
+/* HEADER CONTENTS */
+header{
+    position: sticky;
+    top: 0;
+    left: 0;
+    width: 100%;
+    text-align: right;
+    background-color: #114232;
+    color: #F7F6bb;
+    padding: 1em;
+    box-sizing: border-box;
+    z-index: 100;
+    font-family: "Poppins", sans-serif;
+}
+nav{
+    list-style-type: none;
+    margin: auto;
+    padding: 0;
+    overflow: hidden;
+    background-color:#114232;
+    top: 0;
+}
+nav li {
+    list-style-type: none;
+    float: left;
+}
+nav li a {
+    display: block;
+    color: #F7F6bb;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    margin: auto;
+}
+
+.logo{
+    height: 60px;
+    width: 60px;
+}
+
+
+/* SIDEBAR CONTENTS */
+
+.sidebar {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #F7F6bb;
+    overflow-x: hidden;
+    transition: 0.5s;
+}
+
+.sidebar a:hover {
+    color: #f1f1f1;
+}
+.sidebar .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+
+#userLink p{
+    font-family: "Poppins", sans-serif;
+    text-align: left;
+    color: #114232;
+    padding: 10px 15px;
+    font-size: 20px;
+    transition: 0.3s;
+}
+
+#userLink a {
+    font-family: "Poppins", sans-serif;
+    text-align: left;
+    color: #114232;
+    padding: 10px 15px;
+    font-size: 20px;
+    text-decoration: none;
+    color: #114232;
+    display: block;
+    transition: 0.3s;
+}
+.openbtn {
+    font-size: 20px;
+    cursor: pointer;
+    background-color: #114232;
+    color: #F7F6bb;
+    border: none;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+}
+.openbtn:hover {
+    background-color: #444;
+}
+.closebtn{
+    font-size: 20px;
+    cursor: pointer;
+    background-color: #F7F6bb;
+    color: #114232;
+    border: none;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+.sidebar-logo{
+    height: 200px;
+    width: 200px;
+    align-items: center;
+}
+
+.logoutBtn{
+    border: none;
+    margin-left: 10px;
+    border-radius: 12px;
+    height: 40px;
+    width: 150px;
+    font-size: 12px;
+    font-family: "Poppins", sans-serif;
+    background-color: #87A922;
+}
+
+/* FOOTER CONTENTS */
+
+footer {
+    position: relative;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    text-align: right;
+    background-color: #114232;
+    color: #F7F6bb;
+    padding: 3em;
+    box-sizing: border-box;
+    font-size: small;
+    font-family: "Poppins", sans-serif;
+
+}
+footer a{
+    color: #F7F6bb;
+}
+a:link{
+    text-decoration: none;
+}
+a:visited {
+    text-decoration: none;
+}
+
+#signin {
+    float: right;
+}

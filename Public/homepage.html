@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <title>Home Page</title>
+        <meta http-equiv="Content-Security-Policy" content="script-src 'self' https://apis.google.com">
+        <link rel="stylesheet" href="homepage.css">
+        <script src="login.js"></script>
+        <script src="navbar.js">// nav bar script</script>
+        <script src="homepage.js"></script>
+        <link rel="stylesheet" type="text/css" href="header.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins" rel="stylesheet">
+    </head>
+
+    <body>
+        <div id="mySidebar" class="sidebar">
+            <img src="photos/logo.png" alt="" class="sidebar-logo">
+            <div id="userLink"> <!-- This is where the login link/message will appear -->
+            </div>
+        </div>
+
+        <div id="main" class="main-content">
+            <header id="header">
+                <button type="button" class="openbtn">☰</button>
+                    <nav>
+                        <ul>
+                            <li><img src="photos/logo.png" alt="" class="logo"></li>
+                            <li><a class="active" href="/home">Home</a></li>
+                            <li><a href="/posts">Post</a></li>
+                            <li><a href="/events">Events</a></li>
+                            <li><a href="/locations">Locations</a></li>
+                            <li><a href="/about">About us</a></li>
+                            <li id="signin" ><a href="/signin">Sign in</a></li>
+                        </ul>
+                    </nav>
+            </header>
+
+            <div id="container">
+                <div class="text-box">
+                    <h2>Welcome to</h2>
+                    <h1> Feed the World</h1>
+                    <P>
+                        Where compassion meets action!<br>
+                        We're more than just a volunteer organization; we're a global
+                        movement dedicated to eradicating hunger and fostering community
+                        empowerment. At Feed the World, we believe that every individual
+                        has the power to make a difference, and our platform serves as
+                        a central hub for passionate souls ready to lend a hand.
+                        Whether you're eager to distribute meals, organize fundraisers,
+                        or offer your skills to support sustainable food initiatives,
+                        there's a place for you here. Join us in our mission to nourish
+                        both bodies and spirits, one act of kindness at a time.
+                        Together, we can create a world where no one goes to bed hungry.
+                    </P>
+                </div>
+                <div class="photo-box"><img src="photos/logo.png" alt=""></div>
+
+                <!-- <div class="photo-box"><img src="photos/photo2.jpg" alt=""></div> -->
+            </div>
+
+            <div id="slideshow-box">
+                <div class="slideshow-container">
+
+                    <div class="mySlides fade">
+                    <div class="numbertext"></div>
+                    <img src="photos/carousel1.jpg" alt="">
+                    </div>
+
+                    <div class="mySlides fade">
+                    <div class="numbertext"></div>
+                    <img src="photos/carousel2.jpg" alt="">
+                    </div>
+
+                    <div class="mySlides fade">
+                    <div class="numbertext"></div>
+                    <img src="photos/carousel3.jpg" alt="">
+                    </div>
+
+                </div>
+            </div>
+
+            <footer>
+                <a href="/about" class="footer-link">About Us</a><br>
+                <a href="#" id="subscribeLink">Subscribe to our mailing list!</a><br>
+                <a href="feedtheworld@gmail.com" class="footer-link">feedtheworld@gmail.com</a>
+            </footer>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,107 @@
+/* MAIN CONTENTS */
+
+.main-content {
+    transition: margin-left 0.5s; /* Smooth transition for the margin */
+    padding: 0;
+    margin: 0;
+    overflow: auto;
+    width: 100vw;  /* 100% of the viewport width */
+    height: 100vh;
+    border: none;
+    box-sizing: border-box;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+}
+
+/* SIDE BY SIDE DIV */
+#container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#container div {
+    height: 500px;
+    margin: 0;
+}
+
+#container .text-box{
+    box-sizing: border-box;
+    width: 60%;
+}
+
+.text-box {
+    background-color: #114232;
+    flex: 3;
+    padding-left: 100px;
+}
+
+.photo-box {
+    object-fit: cover;
+    height: 100%;
+    width: auto;
+    overflow: hidden;
+    box-sizing: border-box;
+    flex: 1;
+    background-color: #114232;
+    padding: 20px;
+}
+
+.photo-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;  /* Ensures the image covers the area, clipping excess */
+}
+
+
+
+/* TEXT */
+h1{
+    text-align: left;
+    color: #F7F6bb;
+    font-family: "Poppins", sans-serif;
+    font-size: 3em;
+    margin: 0%;
+}
+
+h2{
+    text-align: left;
+    color: #F7F6bb;
+    font-family: "Poppins", sans-serif;
+}
+
+p{
+    text-align: left;
+    color: #F7F6bb;
+    font-family: "Poppins", sans-serif;
+}
+
+/* SLIDE SHOW */
+
+#slideshow-box {
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center;     /* Center vertically */
+    background-color: #114232;
+}
+
+/* If the slideshow container is directly inside #container, it should be centered now */
+/* If it's not, ensure its parent is also a flex container or adjust as needed */
+.slideshow-container {
+    width: 800px;
+    height: 600px;
+    margin: auto; /* This helps in centering if the parent is not a flex container */
+    position: relative;
+    overflow: hidden;
+}
+
+/* Ensure the images fit the slideshow container */
+.mySlides img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 15%;
+}

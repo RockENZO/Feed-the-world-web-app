@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Events</title>
+    <link rel="stylesheet" href="events.css">
+    <script src="navbar.js">// nav bar script</script>
+    <script src="events.js"></script>
+    <link rel="stylesheet" type="text/css" href="header.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <!-- side bar including links to functions to control sidebar show/hide -->
+    <div id="mySidebar" class="sidebar">
+        <img src="photos/logo.png" alt="" class="sidebar-logo">
+        <div id="userLink"> <!-- This is where the login link/message will appear -->
+        </div>
+    </div>
+    <!-- the main div, encompasses the whole page -->
+    <div id="main" class="main-content">
+        <header>
+            <button type="button" class="openbtn">☰</button>
+            <nav>
+                <ul style="float: centre">
+                    <li><img src="photos/logo.png" alt="" class="logo"></li>
+                    <li><a class="active" href="/homepage.html">Home</a></li>
+                    <li><a href="/posts.html">Posts</a></li>
+                    <li><a href="/events.html">Events</a></li>
+                    <li><a href="/locations">Locations</a></li>
+                    <li><a href="/aboutus.html">About us</a></li>
+                    <li id="signin"><a href="/signin">Sign in</a></li>
+                </ul>
+            </nav>
+        </header>
+        <div id="content">
+            <h1>Events</h1>
+            <div id="manager"> <!-- Only shows if the user is a manager -->
+                <h2>Create Event</h2>
+                <form>
+                    <label for="title">Title: </label><br>
+                    <input id="manager-title" name="title" type="text" placeholder="Title"><br>
+                    <label for="content">Content: </label><br>
+                    <textarea id="manager-content" name="content" placeholder="Content" rows="5" cols="50"></textarea><br>
+                    <label for="selectBranch">Select Branch: </label><br>
+                    <select id="manager-branch" name="selectBranch" placeholder="Content">
+                        <!-- <option value="" selected="selected"></option> -->
+                        <!-- Should be no branches available -->
+                    </select><br><br>
+                    <button id="manager-create-event" type="button">Create Event</button>
+                </form>
+                <hr>
+                <h2>RSVP'd Users</h2>
+                <table id="manager-table">
+                    <tr>
+                        <th>User</th>
+                        <th>Event Title</th>
+                    </tr>
+                    <!-- RSVP'd users will appear in the table here. -->
+                </table>
+                <hr>
+            </div>
+            <form>
+                <h2>Filter Events</h2>
+                <!-- The options would be populated uing JavaScript. For the purposes of this mock-up, they are hardcoded. -->
+                 <label for="branch">Filter Branch: </label>
+                <select name="branch" id="branch">
+                    <option value="" selected="selected"></option> <!-- This means no filter -->
+                </select>
+            </form>
+            <form>
+                <label for="all-events">Filter Branch: </label>
+                <input id="all-events" type="checkbox" checked>
+                <!-- When checked, will show all events. When not checked, only shows those not RSVP'd. -->
+            </form>
+            <button id="filterEvents" type="submit">Filter</button>
+            <hr>
+            <div id="events-container">
+                <!-- Events displayed here -->
+            </div>
+        </div>
+        <footer>
+            <a href="/about" class="footer-link">About Us</a><br>
+            <a href="#" id="subscribeLink">Subscribe to our mailing list!</a><br>
+            <a href="feedtheworld@gmail.com" class="footer-link">feedtheworld@gmail.com</a>
+        </footer>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,46 @@
+1. **Research:**
+   - Each member finds examples and justifies them:
+     - 1: Style
+     - 2: Structure
+     - 3: Features
+     - 4: Support and coordination
+
+2. **Design:**
+   - Each member creates mock-ups and explains user interactions:
+     - 1: Main page
+     - 2: Secondary page
+     - 3: Tertiary page
+     - 4: Justification and coordination
+
+3. **Features:**
+   - Each member plans features and their functionality:
+     - 1: Authentication
+     - 2: Database integration
+     - 3: Search functionality
+     - 4: Payment processing
+
+4. **Review:**
+   - Each member tests and reviews specific aspects:
+     - 1: Usability heuristics
+     - 2: Kinetic load
+     - 3: Cognitive load
+     - 4: Coordination and documentation
+
+5. **Data Plan:**
+   - Each member details client-server interactions and data handling:
+     - 1: Interactions and data sent
+     - 2: Data storage methods
+     - 3: Database schema
+     - 4: Overall plan coherence and documentation
+
+6. **Database Schema:**
+   - Each member works on specific tables and attributes:
+     - 1: Users table
+     - 2: Products table
+     - 3: Orders table
+     - 4: Relationships, keys, and normalization
+
+7. **Implementation:**
+   - All members collaborate on implementation:
+     - All members contribute to all features with high-quality work.
+     - Regular meetings and updates ensure progress and address any issues.

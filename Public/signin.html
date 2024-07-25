@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <title>Home Page</title>
+        <link rel="stylesheet" href="login.css">
+        <script src="navbar.js">// nav bar script</script>
+        <script src="login.js"></script>
+        <link rel="stylesheet" type="text/css" href="header.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+        <script src="https://accounts.google.com/gsi/client" async></script>
+    </head>
+
+    <body>
+        <div id="mySidebar" class="sidebar">
+            <img src="photos/logo.png" alt="" class="sidebar-logo">
+            <div id="userLink"> <!-- This is where the login link/message will appear -->
+            </div>
+        </div>
+
+        <div id="main" class="main-content">
+            <header id="header">
+                <button type="button" class="openbtn">☰</button>
+                    <nav>
+                        <ul>
+                            <li><img src="photos/logo.png" alt="" class="logo"></li>
+                            <li><a class="active" href="/home">Home</a></li>
+                            <li><a href="/posts">Post</a></li>
+                            <li><a href="/events">Events</a></li>
+                            <li><a href="/locations">Locations</a></li>
+                            <li><a href="/about">About us</a></li>
+                            <li id="signin" ><a href="/signin">Sign in</a></li>
+                        </ul>
+                    </nav>
+            </header>
+
+            <div class="login">
+                <section id="login-form">
+                    <h1>Sign In</h1>
+                    <form>
+                        <label for="login-user"></label><input type="text" id="login-user" placeholder="Username" /><br><br>
+                        <label for="login-pass"></label><input type="password" id="login-pass" placeholder="Password" /><br><br>
+                        <button type="button" class="loginBtn">Login</button>
+                    </form>
+                    <br>
+                <div id="google-login">
+                    <div id="g_id_onload"
+                        data-client_id="105901315469-eum6g8uouskprreflpbbsqj0h221pi7g.apps.googleusercontent.com"
+                        data-context="signin"
+                        data-ux_mode="popup"
+                        data-callback="do_google_login"
+                        data-auto_prompt="false">
+                    </div>
+
+                    <div class="g_id_signin"
+                        data-type="standard"
+                        data-shape="pill"
+                        data-theme="outline"
+                        data-text="signin_with"
+                        data-size="large"
+                        data-logo_alignment="left">
+                    </div>
+
+                </div>
+                    <br>
+                    <p>Not a member? <a href="/signup">Sign up here!</a></p>
+                </section>
+            </div>
+
+            <footer>
+                <a href="/about" class="footer-link">About Us</a><br>
+                <a href="#" id="subscribeLink">Subscribe to our mailing list!</a><br>
+                <a href="feedtheworld@gmail.com" class="footer-link">feedtheworld@gmail.com</a>
+            </footer>
+        </div>
+    </body>
+</html>

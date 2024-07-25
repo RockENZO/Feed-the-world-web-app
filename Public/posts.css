@@ -1,0 +1,46 @@
+/* MAIN CONTENTS */
+
+.main-content {
+    transition: margin-left 0.5s; /* Smooth transition for the margin */
+    left: 0;
+    padding: 0;
+    margin: 0;
+    position: fixed;
+    overflow: auto;
+    width: 100vw;  /* 100% of the viewport width */
+    height: 100vh;
+    border: none;
+    box-sizing: border-box;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+}
+
+#titleText {
+    display: inline;
+    width: 350px;
+    height: 35px;
+    border: solid 2px !important;
+    resize: none;
+}
+
+#modiferSelect {
+    display: inline;
+    font-size: smaller;
+}
+
+#branchSelector {
+    margin-bottom: 10px;
+}
+
+#postText {
+    width: 400px;
+    height: 150px;
+    margin-top: 10px;
+    resize: none;
+}
+
+#loggedInContent {
+    display: none;
+}

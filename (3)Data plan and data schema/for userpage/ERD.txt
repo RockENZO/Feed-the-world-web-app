@@ -1,0 +1,69 @@
+Data Plan:
+	1. Users Table:
+	     Fields:
+		     user_id (Primary Key): Unique identifier for each user.
+		     username: Username of the user.
+		     password: Encrypted password of the user.
+		     role: Role of the user (Admin, Manager, Normal User).
+	     Purpose: Store information about users including their login credentials and roles.
+	2. Branches Table:
+	     Fields:
+		     branch_id (Primary Key): Unique identifier for each branch.
+		     name: Name of the branch.
+	     Purpose: Store information about branches.
+	3. UserBranches Table (Many-to-Many Relationship):
+	     Fields:
+		     user_id (Foreign Key): References user_id in the Users table.
+		     branch_id (Foreign Key): References branch_id in the Branches table.
+	     Purpose: Establish a many-to-many relationship between users and branches, indicating which users belong to which branches.
+
+Data Schema:
+    Sql code:
+        CREATE TABLE Users (
+            user_id INT AUTO_INCREMENT PRIMARY KEY,
+            username VARCHAR(50) UNIQUE NOT NULL,
+            password VARCHAR(100) NOT NULL, -- Store encrypted password
+            role ENUM('Manager', 'Normal User') NOT NULL
+        );
+        
+        CREATE TABLE Branches (
+            branch_id INT AUTO_INCREMENT PRIMARY KEY,
+            name VARCHAR(100) NOT NULL
+        );
+        
+        CREATE TABLE UserBranches (
+            user_id INT,
+            branch_id INT,
+            PRIMARY KEY (user_id, branch_id),
+            FOREIGN KEY (user_id) REFERENCES Users(user_id),
+            FOREIGN KEY (branch_id) REFERENCES Branches(branch_id)
+	);
+	
+Entity-Relationship Diagram:
+       +------------------+                        +------------------+
+       |      Users       |                        |     Branches     |
+       +------------------+                        +------------------+
+       | user_id (PK)     |    <-------+           | branch_id (PK)   |
+       | username         |            |           | name             |
+       | password         |            +------>    |                  |
+       | role             |                        +------------------+
+       +------------------+                                 |
+                ^                                           |
+                |                                           |
+                |                                           |
+                +-------------------------------------------+
+                       +------------------------------+
+                       |         UserBranches         |
+                       +------------------------------+
+                       | user_id (FK, PK)             |
+                       | branch_id (FK, PK)           |
+                       +------------------------------+
+    In this diagram:
+        • Each rectangle represents an entity (Users, Branches, UserBranches).
+        • The ovals represent attributes of each entity.
+        • Arrows indicate the relationships between entities.
+        • (PK) denotes the primary key attribute, while (FK) denotes foreign key attributes.
+
+        • Users entity stores information about users, including their unique user_id, username, password, and role.
+        • Branches entity stores information about branches, including their unique branch_id and name.
+        • UserBranches entity establishes a many-to-many relationship between users and branches. It acts as a bridge table, indicating which users belong to which branches. It has composite primary keys (user_id, branch_id) referencing the respective primary keys in Users and Branches tables.

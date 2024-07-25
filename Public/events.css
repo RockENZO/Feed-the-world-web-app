@@ -1,0 +1,168 @@
+/* MAIN CONTENTS */
+
+.main-content {
+    transition: margin-left 0.5s; /* Smooth transition for the margin */
+    left: 0;
+    padding: 0;
+    margin: 0;
+    position: fixed;
+    overflow: auto;
+    width: 100vw;  /* 100% of the viewport width */
+    height: 100vh;
+    border: none;
+    box-sizing: border-box;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+}
+
+#main {
+    background-color: #114232;
+}
+
+#events-container {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    gap: 10px;
+    background-color: darkseagreen;
+    padding: 10px;
+}
+
+.events-item {
+    background-color: #F7F6bb;
+    padding-left: 10px;
+    padding-right: 10px;
+    border: 1px solid black;
+    text-align: left;
+    max-width: 500px;
+    position: relative;
+    min-height: 250px;
+
+    overflow: auto;
+}
+
+.events-branch {
+    position: absolute;
+    right: 10px;
+    top: 0px;
+    text-align: right;
+    font-style: italic;
+    font-size: 0.7em;
+
+    overflow: auto;
+}
+
+.events-date {
+    position: absolute;
+    bottom: 0px;
+    right: 10px;
+
+    overflow: auto;
+}
+
+hr {
+    color: #F7F6bb;
+}
+
+/* TEXT */
+
+h1 {
+    color: #F7F6bb;
+    font-family: "Poppins", sans-serif;
+}
+
+h2 {
+    color: #F7F6bb;
+    font-family: "Poppins", sans-serif;
+}
+
+h2.event{
+    color: #114232;
+    font-family: "Poppins", sans-serif;
+}
+
+p{
+    font-family: "Poppins", sans-serif;
+}
+
+li{
+    font-family: "Poppins", sans-serif;
+}
+
+label{
+    color: #F7F6bb;
+    font-family: "Poppins", sans-serif;
+}
+
+input{
+    color: black;
+    background-color: #F7F6bb;
+    font-family: "Poppins", sans-serif;
+}
+
+textarea {
+    color: black;
+    background-color: #F7F6bb;
+    font-family: "Poppins", sans-serif;
+}
+
+table {
+    padding: 10px;
+    font-family: "Poppins", sans-serif;
+    background-color: darkseagreen;
+    font-size: 2em;
+    width: 100%;
+    border: 1px solid black;
+}
+
+#content {
+    padding: 10px;
+}
+
+th, tr {
+    font-family: "Poppins", sans-serif;
+    background-color: #F7F6bb;
+    border-bottom: 2px solid black;
+}
+
+td {
+    padding-left: 10px;
+}
+
+select {
+    background-color: green;
+    color: #F7F6bb;
+    border-radius: 8px;
+    transition-duration: 0.4s;
+}
+
+select:hover {
+    background-color: lime;
+    color: black;
+}
+
+button {
+    background-color: green;
+    color: #F7F6bb;
+    border-radius: 8px;
+    transition-duration: 0.4s;
+}
+
+button:hover {
+    background-color: lime;
+    color: black;
+}
+
+button:disabled {
+    background-color: seagreen;
+    opacity: 0.5;
+    color: #F7F6bb;
+    border-radius: 8px;
+    cursor: not-allowed;
+}
+
+button:hover:disabled {
+    background-color: seagreen;
+    opacity: 0.5;
+}

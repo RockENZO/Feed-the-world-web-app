@@ -1,0 +1,102 @@
+/* MAIN CONTENTS */
+
+.main-content {
+    transition: margin-left 0.5s; /* Smooth transition for the margin */
+    left: 0;
+    padding: 0;
+    margin: 0;
+    overflow: auto;
+    width: 100vw;  /* 100% of the viewport width */
+    height: 100vh;
+    border: none;
+    box-sizing: border-box;
+    background-color: #114232;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+}
+
+/* TEXT */
+
+h1{
+    text-align: center;
+    color: #F7F6bb;
+    font-family: "Poppins", sans-serif;
+}
+
+h2{
+    text-align: center;
+    color: #F7F6bb;
+    font-family: "Poppins", sans-serif;
+}
+
+p{
+    text-align: left;
+    color: #F7F6bb;
+    font-size: larger;
+    font-family: "Poppins", sans-serif;
+}
+
+/* SIDE BY SIDE DIV */
+#vision-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+}
+
+#vision-container div {
+    height: fit-content;
+    width: 50%;
+    margin: 0;
+    padding: 0;
+}
+
+.photo-box {
+    object-fit: cover;
+    height: 100%;
+    width: auto;
+    overflow: hidden;
+    box-sizing: border-box;
+    flex: 1;
+}
+
+.photo-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;  /* Ensures the image covers the area, clipping excess */
+}
+
+#vision-container .text-box{
+    box-sizing: border-box;
+    padding: 30px;
+
+}
+
+.textBox {
+    background-color: #114232;
+    flex: 1;
+    overflow: hidden;
+}
+
+#story-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+
+}
+
+#story-container div {
+    height: fit-content;
+    width: 50%;
+    margin: 0;
+    padding: 0;
+}
+
+#story-container .text-box{
+    box-sizing: border-box;
+    padding: 30px;
+}

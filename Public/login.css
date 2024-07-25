@@ -1,0 +1,143 @@
+/* MAIN CONTENTS */
+
+.main-content {
+    transition: margin-left 0.5s; /* Smooth transition for the margin */
+    padding: 0;
+    margin: 0;
+    overflow: auto;
+    width: 100vw;  /* 100% of the viewport width */
+    height: 100vh;
+    border: none;
+    box-sizing: border-box;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-color: #114232;
+}
+
+/* TEXT */
+h1{
+    text-align: center;
+    color: #F7F6bb;
+    font-family: "Poppins", sans-serif;
+}
+
+h2{
+    text-align: center;
+    color: #F7F6bb;
+    font-family: "Poppins", sans-serif;
+}
+
+p{
+    text-align: center;
+    color: #F7F6bb;
+    font-family: "Poppins", sans-serif;
+}
+
+/* LOGIN BOX */
+
+.login{
+    background-color: #F7F6bb;
+    height: 400px;
+    width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    border-radius: 25px;
+}
+
+.login h1{
+    color: #114232;
+}
+
+.login p{
+    color: #114232;
+}
+
+#login-form{
+    text-align: center;
+    font-family: "Poppins", sans-serif;
+
+}
+
+/* SIGN UP */
+.signup{
+    background-color: #F7F6bb;
+    height: 600px;
+    width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    border-radius: 25px;
+}
+
+.signup h1{
+    color: #114232;
+}
+
+.signup p{
+    color: #114232;
+}
+
+#signup-form{
+    text-align: center;
+    font-family: "Poppins", sans-serif;
+
+}
+
+body .main-content #google-login {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* FORM */
+
+.loginBtn, .signupBtn, .saveBtn{
+    border: none;
+    border-radius: 12px;
+    height: 40px;
+    width: 150px;
+    font-size: 12px;
+    font-family: "Poppins", sans-serif;
+    background-color: #87A922;
+}
+
+input{
+    border: none;
+    border-radius: 12px;
+    font-size: 12px;
+    height: 30px;
+    width: 250px;
+    font-family: "Poppins", sans-serif;
+    background-color: white;
+    padding: 5px;
+    color: #114232;
+
+}
+
+/* UPDATE */
+.update{
+    background-color: #F7F6bb;
+    height: 500px;
+    width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    border-radius: 25px;
+}
+
+.update h1{
+    color: #114232;
+}
+
+.update p{
+    color: #114232;
+}
+
+#update-form{
+    text-align: center;
+    font-family: "Poppins", sans-serif;
+
+}
+
+

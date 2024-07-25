@@ -1,0 +1,33 @@
+Data Plan:
+	1. Events Table:
+		Fields:
+			event_id (Primary Key): Unique identifier for each event.
+			title: Title of the event, as shown in the grid.
+			content: The description written under the title.
+			timestamp: The date the event was created.
+			branch_id (Foreign Key): Different branches can post events, so we need to keep track of which branch did which event.
+		Purpose: Store information about events.
+	2. RsvpStatus Table (Many-to-many relationship):
+		Fields:
+			user_id (Foreign Key): References the user that RSVP'd to an event.
+			event_id (Foreign Key): References the event the user RSVP'd to.
+		Purpose: To store the RSVP status of users when they click the RSVP button on the events page.
+
+
+Data Schema:
+	CREATE TABLE Events (
+		event_id INT AUTO_INCREMENT PRIMARY KEY,
+		title VARCHAR(50) NOT NULL,
+		content VARCHAR(512) NOT NULL,
+		timestamp VARCHAR(25) NOT NULL,
+		branch_id INT,
+		FOREIGN KEY (branch_id) REFERENCES Branches(branch_id)
+	);
+
+	CREATE TABLE RsvpStatus (
+		user_id INT,
+		event_id INT,
+		PRIMARY KEY (user_id, event_id),
+		FOREIGN KEY (user_id) REFERENCES Users(user_id),
+		FOREIGN KEY (event_id) REFERENCES Events(event_id)
+	);
