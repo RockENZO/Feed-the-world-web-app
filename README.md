@@ -1,4 +1,4 @@
-# 2024 Web Application Group Project
+# Feed the World — Volunteer Organisation Web App
 
 ## Table of Contents
 - [About the Project](#about-the-project)
@@ -10,7 +10,7 @@
 - [API Documentation](#api-documentation)
 - [Contributing](#contributing)
 ## About the Project
-This website serves as a space for a volunteer organization to create posts, events, and gain members. Users can sign up, join locations, see events, view posts, and change their details. Managers can create posts and events, while admins can edit user roles and create branches.
+A four-person University of Adelaide web/database coursework project built with Express, MySQL and vanilla HTML/CSS/JavaScript. This website serves as a space for a volunteer organization to create posts, events, and gain members. Users can sign up, join locations, see events, view posts, and change their details. Managers can create posts and events, while admins can edit user roles and create branches.
 
 ## Team Members
 - Leesa Trembath - a1824870
@@ -23,37 +23,41 @@ This website serves as a space for a volunteer organization to create posts, eve
 - Join and leave branches
 - View and create events
 - Manage user roles and branches
-- Secure authentication with Argon2 and Google OAuth
+- Argon2 password hashing and Google login integration
 
 ## Prerequisites
-- Node.js
-- npm
-- MySQL server
 
-## Installation
-1. Clone the repository:
-    ```sh
-    git clone https://github.com/your-repo.git
-    cd your-repo
-    ```
-2. Install dependencies:
-    ```sh
-    npm install
-    ```
-3. Set up the MySQL database:
-    ```sh
-    service mysql start
-    mysql -u root -p < database.sql
-    ```
-4. Configure environment variables:
-    - Create a `.env` file and add necessary environment variables (e.g., database credentials, OAuth client ID).
+- Node.js and npm; a version/pinned runtime matrix is not published.
+- A local MySQL server and a dedicated disposable development database.
+- Optional Google OAuth configuration for third-party login.
+
+## Installation and current configuration
+
+```bash
+git clone https://github.com/RockENZO/Feed-the-world-web-app.git
+cd Feed-the-world-web-app
+npm ci
+```
+
+Start MySQL using your platform’s service manager. The app attempts `service mysql start`, which is Linux-specific; start MySQL separately on other platforms. Import the actual root-level schema:
+
+```bash
+mysql -u YOUR_DATABASE_USER -p < usermanagement.sql
+```
+
+**Use a disposable local database:** this file creates/uses `usermanagement`, drops existing application tables and inserts demonstration rows. It is not a migration or a safe update command for existing data.
+
+Configure the database pool in `app.js` to match that local database/user. The checked-in code contains host/database settings and commented credential placeholders; it does **not** load a `.env` file or read database credentials from environment variables. Avoid committing real credentials. Google login settings also require review in the frontend/auth routes before using your own OAuth client; registration of a `.env` alone does not configure it.
 
 ## Usage
-1. Start the server:
-    ```sh
-    npm start
-    ```
-2. Open your browser and go to `127.0.0.1:8080`.
+
+```bash
+npm start
+```
+
+The npm script runs `node app.js`. Its default port is **3000**, configurable via the `PORT` environment variable. Open `http://127.0.0.1:3000/` (or your selected port). `bin/www` is a legacy alternative launcher and is not the npm entry point.
+
+This is a coursework prototype, not a production deployment recipe. Database setup, Google login and email configuration need local verification; this README update does not establish successful startup or full authentication/security coverage.
 
 ## API Documentation
 ### Endpoints
@@ -72,3 +76,4 @@ This website serves as a space for a volunteer organization to create posts, eve
 4. Commit your changes (`git commit -m 'Add some feature'`).
 5. Push to the branch (`git push origin feature-branch`).
 6. Open a pull request.
+
