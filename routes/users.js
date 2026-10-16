@@ -5,13 +5,11 @@ const xss = require('xss-clean');
 
 
 var bodyParser = require('body-parser');
-const mysql = require('mysql2');
 const path = require('path');
+const {requireAdmin} = require('../middleware/authorization');
+router.use(requireAdmin);
 
-const pool = mysql.createConnection({
-    host: 'localhost',
-    database: 'usermanagement',
-});
+
 // Serve static files from the 'public' folder
 router.use(express.static(path.join(__dirname, '../Public')));
 router.get('/', (req, res) => {
@@ -48,7 +46,7 @@ router.use(bodyParser.json());
 router.post('/branches/:branchId/users', (req, res) => {
     const branchId = req.params.branchId;
     const { user_id } = req.body;
-    pool.query('INSERT INTO UserBranches (branch_id, user_id) VALUES (?, ?)', [branchId, user_id], (error, results) => {
+    req.pool.query('INSERT INTO UserBranches (branch_id, user_id) VALUES (?, ?)', [branchId, user_id], (error, results) => {
         if (error) {
             res.status(500).json({ error: 'Internal Server Error' });
         } else {
@@ -61,7 +59,7 @@ router.post('/branches/:branchId/users', (req, res) => {
 router.put('/:id', (req, res) => {
     const userId = req.params.id;
     const { role } = req.body;
-    pool.query('UPDATE Users SET role = ? WHERE user_id = ?', [role, userId], (error, results) => {
+    req.pool.query('UPDATE Users SET role = ? WHERE user_id = ?', [role, userId], (error, results) => {
         if (error) {
             // console.error('Error updating user role:', error);
             res.status(500).json({ error: 'Internal Server Error' });
@@ -75,7 +73,7 @@ router.put('/:id', (req, res) => {
 router.delete('/:branchId/users/:userId', (req, res) => {
     const branchId = req.params.branchId;
     const userId = req.params.userId;
-    pool.query('DELETE FROM UserBranches WHERE branch_id = ? AND user_id = ?', [branchId, userId], (error, results) => {
+    req.pool.query('DELETE FROM UserBranches WHERE branch_id = ? AND user_id = ?', [branchId, userId], (error, results) => {
         if (error) {
             res.status(500).json({ error: 'Internal Server Error' });
         } else {

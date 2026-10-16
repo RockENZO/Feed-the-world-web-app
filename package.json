@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node app.js"
+    "start": "node app.js",
+    "test": "node --test tests/*.test.js"
   },
   "dependencies": {
     "argon2": "^0.40.3",
