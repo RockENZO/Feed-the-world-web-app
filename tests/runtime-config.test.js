@@ -1,6 +1,6 @@
 const test=require('node:test');
 const assert=require('node:assert/strict');
-const {sessionOptions,mailOptions}=require('../config/runtime');
+const {sessionOptions,mailOptions,proxyTrust}=require('../config/runtime');
 
 test('production requires a non-default strong session secret',()=>{
   assert.throws(()=>sessionOptions({NODE_ENV:'production'}),/SESSION_SECRET/);
@@ -31,4 +31,13 @@ test('mail transport requires explicit credentials and preserves TLS validation'
   assert.equal(mailOptions({...env,SMTP_PORT:'465'}).transport.secure,true);
   assert.throws(()=>mailOptions({...env,SMTP_PORT:'invalid'}),/port/);
   assert.throws(()=>mailOptions({...env,SMTP_SECURE:'invalid'}),/SECURE/);
+});
+
+test('proxy trust is restricted to loopback unless disabled',()=>{
+  assert.equal(proxyTrust({NODE_ENV:'production'}),'loopback');
+  assert.equal(proxyTrust({}),false);
+  assert.equal(proxyTrust({NODE_ENV:'production',TRUST_PROXY:'false'}),false);
+  assert.throws(()=>proxyTrust({TRUST_PROXY:'true'}),/TRUST_PROXY/);
+  const env={SMTP_HOST:'smtp.example.invalid',SMTP_USER:'fixture-user',SMTP_PASSWORD:'fixture-password',SMTP_FROM:'sender@example.invalid',SMTP_PORT:'465',SMTP_SECURE:''};
+  assert.equal(mailOptions(env).transport.secure,true);
 });

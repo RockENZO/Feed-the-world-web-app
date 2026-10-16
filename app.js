@@ -2,7 +2,7 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
 var session = require('express-session');
-const {sessionOptions}=require('./config/runtime');
+const {sessionOptions,proxyTrust}=require('./config/runtime');
 var logger = require('morgan');
 var mysql = require('mysql2');
 var { env } = require('process');
@@ -70,6 +70,7 @@ app.use(function(req, res, next) {
     next();
 });
 
+app.set('trust proxy',proxyTrust());
 app.use(session(sessionOptions()));
 
 app.get('/check-login', function(req, res) {

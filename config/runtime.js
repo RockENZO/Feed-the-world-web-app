@@ -12,6 +12,13 @@ function sessionOptions(env=process.env) {
     };
 }
 
+function proxyTrust(env=process.env) {
+    const value=env.TRUST_PROXY || (env.NODE_ENV==='production' ? 'loopback' : 'false');
+    if (value==='false') return false;
+    if (value==='loopback') return 'loopback';
+    throw new Error('TRUST_PROXY must be false or loopback');
+}
+
 function mailOptions(env=process.env) {
     if (!['SMTP_HOST','SMTP_USER','SMTP_PASSWORD','SMTP_FROM'].every(k=>env[k])) return null;
     const port=Number(env.SMTP_PORT || 587);
@@ -26,4 +33,4 @@ function mailOptions(env=process.env) {
     };
 }
 
-module.exports={sessionOptions,mailOptions};
+module.exports={sessionOptions,mailOptions,proxyTrust};
