@@ -63,6 +63,12 @@ The npm script runs `node app.js`. Its default port is **3000**, configurable vi
 
 This is a coursework prototype, not a production deployment recipe. Database setup, Google login and email configuration need local verification; this README update does not establish successful startup or full authentication/security coverage.
 
+## Access-control verification
+
+Administrative user/branch APIs require a signed-in database administrator. Event/post publishing requires the current database Manager role and an assigned branch; post authors come from the server session. Normal members can still use the existing self-service branch routes.
+
+Run `npm test` (Node.js 22 or 24). Tests use real Express/session HTTP routing with controlled database responses, including denied writes, stale roles and forged author IDs. They do not certify the MySQL schema, Google login, mail delivery or a production deployment.
+
 ## API Documentation
 ### Endpoints
 - **POST /login**: User login

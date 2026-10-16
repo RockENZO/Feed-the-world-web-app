@@ -2,6 +2,7 @@ const express = require('express');
 var router = express.Router();
 var bodyParser = require('body-parser');
 const path = require('path');
+const {requireUser, requireManagedBranch} = require('../middleware/authorization');
 router.use(bodyParser.json());
 
 // Template function to streamline the get/post routes.
@@ -38,7 +39,7 @@ function queryDatabase(req, res, query, prepared_statements, callback) {
 //     next();
 //   });
 
-  router.get('/userRole', (req, res, next) => {
+  router.get('/userRole', requireUser, (req, res, next) => {
     res.json({ role: req.session.user.role });
   });
 
@@ -50,8 +51,10 @@ router.get('/getPosts', (req, res, next) => {
 });
 
 // POST route to add a post
-router.post('/addPost', (req, res, next) => {
-    const { content, branch, user } = req.body;
+router.post('/addPost', requireManagedBranch('branch_id'), (req, res, next) => {
+    const { content } = req.body;
+    const branch = req.authorizedBranchId;
+    const user = req.session.user.user_id;
 
     // Validate the incoming request
     if (!content || !branch || !user) {
@@ -65,7 +68,7 @@ router.post('/addPost', (req, res, next) => {
     });
 });
 
-router.get('/getBranches', (req, res, next) => {
+router.get('/getBranches', requireUser, (req, res, next) => {
     queryDatabase(req, res, `SELECT Branches.name AS branch FROM Branches
       INNER JOIN BranchManagers ON BranchManagers.user_id=?
       AND Branches.branch_id=BranchManagers.branch_id`, [req.session.user.user_id], (row) => {
@@ -73,7 +76,7 @@ router.get('/getBranches', (req, res, next) => {
     });
   });
 
-  router.get('/getBranchId', (req, res, next) => {
+  router.post('/getBranchId', requireUser, (req, res, next) => {
     const name = req.body.name;
     queryDatabase(req, res, `SELECT Branches.branch_id FROM Branches
                              WHERE Branches.name = ?`, [name], (row) => {
