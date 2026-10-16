@@ -30,7 +30,7 @@ router.post('/login', async function(req,res,next){
         });
         const payload = ticket.getPayload();
         //console.log(payload['sub']);
-        console.log(payload['email']);
+
         // If request specified a G Suite domain:
         // const domain = payload['hd'];
 
@@ -51,7 +51,7 @@ router.post('/login', async function(req,res,next){
               return;
             }
 
-            console.log(JSON.stringify(userRows));
+
 
             if (rows.length > 0){
               // Set session with user_id and username, excluding password
@@ -107,7 +107,7 @@ router.post('/login', async function(req,res,next){
             return;
           }
 
-          console.log(JSON.stringify(userRows));
+
 
           if (userRows.length > 0){
 
@@ -229,7 +229,7 @@ router.post('/google_login', async function(req,res,next){
     });
     const payload = ticket.getPayload();
     //console.log(payload['sub']);
-    console.log(payload['email']);
+
     // If request specified a G Suite domain:
     // const domain = payload['hd'];
 

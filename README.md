@@ -49,6 +49,10 @@ mysql -u YOUR_DATABASE_USER -p < usermanagement.sql
 
 Configure the database pool in `app.js` to match that local database/user. The checked-in code contains host/database settings and commented credential placeholders; it does **not** load a `.env` file or read database credentials from environment variables. Avoid committing real credentials. Google login settings also require review in the frontend/auth routes before using your own OAuth client; registration of a `.env` alone does not configure it.
 
+## Session and mail settings
+
+See [configuration](docs/CONFIGURATION.md) for environment-based session secrets and optional SMTP. Missing mail credentials disable delivery; production requires an explicit session secret.
+
 ## Usage
 
 ```bash

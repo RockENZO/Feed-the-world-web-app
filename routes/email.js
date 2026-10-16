@@ -1,36 +1,26 @@
-var express = require('express');
-var router = express.Router();
-var nodemailer = require('nodemailer');
+const express = require('express');
+const router = express.Router();
+const nodemailer = require('nodemailer');
+const {mailOptions} = require('../config/runtime');
 
 router.post('/subscribe', async (req, res) => {
+    const email = req.body.email;
+    if (typeof email !== 'string' || email.length > 320 || !/^[^\s@,;<>]+@[^\s@,;<>]+\.[^\s@,;<>]+$/.test(email)) {
+        return res.status(400).send('Provide a single valid email address');
+    }
     try {
-        const { email } = req.body;  // Make sure this matches the name attribute in your form or AJAX request
-        if (!email) {
-            throw new Error("Email address is missing!");
-        }
-
-        const transporter = nodemailer.createTransport({
-            host: 'smtp.ethereal.email',
-            port: 587,
-            auth: {
-                user: 'rudy.raynor@ethereal.email',
-                pass: 'aQwwdhDZVCaqhcpygb'
-            }
-        });
-
-        const mailOptions = {
-            from: 'feedtheworld@gmail.com',
-            to: email,  // This should be a valid email string
+        const configuration = mailOptions();
+        if (!configuration) return res.status(503).send('Email service is not configured');
+        const transporter = nodemailer.createTransport(configuration.transport);
+        await transporter.sendMail({
+            from: configuration.from, to: email,
             subject: 'Subscription Confirmation',
             text: 'Thank you for subscribing to our mailing list!'
-        };
-
-        let info = await transporter.sendMail(mailOptions);
-        console.log('Message sent: %s', info.messageId);
+        });
         res.send('Subscription successful');
     } catch (error) {
-        console.error('Error sending email:', error);
-        res.status(500).send('Subscription failed');
+        console.error('Email delivery failed');
+        res.status(503).send('Email service unavailable');
     }
 });
 

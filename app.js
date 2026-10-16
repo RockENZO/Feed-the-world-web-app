@@ -2,6 +2,7 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
 var session = require('express-session');
+const {sessionOptions}=require('./config/runtime');
 var logger = require('morgan');
 var mysql = require('mysql2');
 var { env } = require('process');
@@ -69,21 +70,7 @@ app.use(function(req, res, next) {
     next();
 });
 
-app.use(session({
-    resave: false,
-    saveUninitialized: true,
-    secret: 'super secret string',
-    cookie: {
-        secure: false,             // Set to true if using HTTPS
-        httpOnly: true,            // Helps mitigate XSS attacks by not allowing client-side script access to the cookie
-        maxAge: 1000 * 60 * 60     // Sets cookie expiration time (e.g., 1 hour)
-    }
-}));
-
-app.use(function(req, res, next) {
-    console.log('Session data:', req.session);
-    next();
-});
+app.use(session(sessionOptions()));
 
 app.get('/check-login', function(req, res) {
     if (req.session.user) {
