@@ -2,6 +2,7 @@ const express = require('express');
 var router = express.Router();
 var bodyParser = require('body-parser');
 const path = require('path');
+const {requireUser, requireManagedBranch} = require('../middleware/authorization');
 router.use(bodyParser.json());
 /*
 router.get('/', (req, res, next) => {
@@ -42,18 +43,18 @@ router.get('/getEvents', (req, res, next) => {
   });
 });
 
-router.get('/userRole', (req, res, next) => {
+router.get('/userRole', requireUser, (req, res, next) => {
   res.json({ role: req.session.user.role });
 });
 
-router.get('/getRsvp', (req, res, next) => {
+router.get('/getRsvp', requireUser, (req, res, next) => {
   queryDatabase(req, res, `SELECT RsvpStatus.event_id FROM RsvpStatus
         WHERE RsvpStatus.user_id=?`, [req.session.user.user_id], (row) => {
     res.json(row);
   });
 });
 
-router.get('/rsvpUsers', (req, res, next) => {
+router.get('/rsvpUsers', requireUser, (req, res, next) => {
   queryDatabase(req, res, `SELECT Users.username, Events.title FROM
     ((Users INNER JOIN
     RsvpStatus ON Users.user_id=RsvpStatus.user_id) INNER JOIN
@@ -62,28 +63,21 @@ router.get('/rsvpUsers', (req, res, next) => {
   });
 });
 
-router.post('/setRsvp', (req, res, next) => {
+router.post('/setRsvp', requireUser, (req, res, next) => {
   queryDatabase(req, res, `INSERT INTO RsvpStatus (user_id, event_id)
     VALUES (?, ?)`, [req.session.user.user_id, req.body.eventId], (row) => {
     res.sendStatus(200);
   });
 });
 
-router.post('/addEvent', (req, res, next) => {
-  queryDatabase(req, res, `SELECT Branches.branch_id FROM Branches
-    WHERE Branches.name=?`, [req.body.branch], (row) => {
-    if (row.length == 0) {
-      res.sendStatus(500);
-    } else {
-      queryDatabase(req, res, `INSERT INTO Events (title, content, branch_id)
-    VALUES (?, ?, ?)`, [req.body.title, req.body.content, row[0].branch_id], (row) => {
-        res.sendStatus(200);
-      });
-    }
+router.post('/addEvent', requireManagedBranch('name'), (req, res, next) => {
+  queryDatabase(req, res, `INSERT INTO Events (title, content, branch_id)
+    VALUES (?, ?, ?)`, [req.body.title, req.body.content, req.authorizedBranchId], () => {
+    res.sendStatus(200);
   });
 });
 
-router.get('/getBranches', (req, res, next) => {
+router.get('/getBranches', requireUser, (req, res, next) => {
   queryDatabase(req, res, `SELECT Branches.name AS branch FROM Branches
     INNER JOIN BranchManagers ON BranchManagers.user_id=?
     AND Branches.branch_id=BranchManagers.branch_id`, [req.session.user.user_id], (row) => {
