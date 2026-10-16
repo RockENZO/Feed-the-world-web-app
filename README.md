@@ -27,7 +27,7 @@ A four-person University of Adelaide web/database coursework project built with 
 
 ## Prerequisites
 
-- Node.js and npm; a version/pinned runtime matrix is not published.
+- Node.js 22 or later and npm; CI verifies Node.js 22 and 24.
 - A local MySQL server and a dedicated disposable development database.
 - Optional Google OAuth configuration for third-party login.
 
