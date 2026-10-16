@@ -1,36 +1,38 @@
-var express = require('express');
-var router = express.Router();
-var nodemailer = require('nodemailer');
+const express = require('express');
+const router = express.Router();
+const nodemailer = require('nodemailer');
+const {mailOptions} = require('../config/runtime');
+const {requireUser} = require('../middleware/authorization');
+const attempts = new Map();
+const cooldownMs = 60000;
 
-router.post('/subscribe', async (req, res) => {
+router.post('/subscribe', requireUser, async (req, res) => {
+    const email = req.session.user.email;
+    if (typeof email !== 'string' || email.length > 320 || !/^[^\s@,;<>]+@[^\s@,;<>]+\.[^\s@,;<>]+$/.test(email)) {
+        return res.status(400).send('Provide a single valid email address');
+    }
     try {
-        const { email } = req.body;  // Make sure this matches the name attribute in your form or AJAX request
-        if (!email) {
-            throw new Error("Email address is missing!");
+        const configuration = mailOptions();
+        if (!configuration) return res.status(503).send('Email service is not configured');
+        const now = Date.now();
+        for (const [user, time] of attempts) if (now-time >= cooldownMs) attempts.delete(user);
+        const userId = req.session.user.user_id;
+        if (attempts.has(userId)) {
+            res.set('Retry-After',String(Math.ceil((cooldownMs-now+attempts.get(userId))/1000)));
+            return res.status(429).send('Please wait before requesting another confirmation');
         }
-
-        const transporter = nodemailer.createTransport({
-            host: 'smtp.ethereal.email',
-            port: 587,
-            auth: {
-                user: 'rudy.raynor@ethereal.email',
-                pass: 'aQwwdhDZVCaqhcpygb'
-            }
-        });
-
-        const mailOptions = {
-            from: 'feedtheworld@gmail.com',
-            to: email,  // This should be a valid email string
+        // Reserve before awaiting delivery so concurrent requests cannot all send.
+        attempts.set(userId,now);
+        const transporter = nodemailer.createTransport(configuration.transport);
+        await transporter.sendMail({
+            from: configuration.from, to: email,
             subject: 'Subscription Confirmation',
             text: 'Thank you for subscribing to our mailing list!'
-        };
-
-        let info = await transporter.sendMail(mailOptions);
-        console.log('Message sent: %s', info.messageId);
+        });
         res.send('Subscription successful');
     } catch (error) {
-        console.error('Error sending email:', error);
-        res.status(500).send('Subscription failed');
+        console.error('Email delivery failed');
+        res.status(503).send('Email service unavailable');
     }
 });
 
